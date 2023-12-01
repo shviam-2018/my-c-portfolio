@@ -14,7 +14,7 @@ int main() {
 
   // This calculates the area and prints it out
   int area = side * base;
-  printf("The area is: %d", area);
+  printf("The area is: %d \n", area);
 
   // End of code
   return 0;
