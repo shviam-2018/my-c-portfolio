@@ -18,7 +18,7 @@ int main(){
 
 // this is to confirm the age enterd by the user
     char confirm_human_age[4];
-    printf("is this correct: ");
+    printf("is this correct(yes/no): ");
     scanf("%s", confirm_human_age);
     if(strcmp(confirm_human_age, "yes") ==0){
         break;
