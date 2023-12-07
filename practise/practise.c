@@ -1,48 +1,41 @@
-//requied include
 #include <stdio.h>
 #include <string.h>
 
-//creating main
 int main(){
-    // variable
-    int human_age;
-    int dog_year;
-    int cat_years;
+    int  bill_before_tip;
+    float tip_percentage;
+    float Bill_after_tip;
 
-// asking for user age
+//this is to get user input for total bill before tip
     while (1)
     {
-    printf("enter your age: ");
-    scanf("%d",&human_age);
-    printf("the age you enterd is %d\n",human_age);
+    printf("enter total bill: ");
+    scanf("%d",&bill_before_tip);
+    printf("the ammount you entered is: %d\n",bill_before_tip);
 
-// this is to confirm the age enterd by the user
-    char confirm_human_age[4];
-    printf("is this correct: ");
-    scanf("%s", confirm_human_age);
-    if(strcmp(confirm_human_age, "yes") ==0){
+    char confirm_before_bill[4];
+    printf("is this correct(yes/no): %s");
+    scanf("%s",confirm_before_bill);
+    if(strcmp(confirm_before_bill,"yes")==0){
         break;
-       }
+    }
+
+//this is to get tippercentage from user
+    while (1)
+    {
+        printf("who much of the ammount do you what to tip: ");
+        scanf("%f",&tip_percentage);
+        printf("yoou whant to tip: %f\n",tip_percentage);
+
+        char confirm_tip_persentage[3];
+        printf("is this correct: ");
+        scanf("%s", confirm_tip_persentage);
+        if(strcmp(confirm_tip_persentage,"yes")==0){
+            break;
+        }
     }
     
-// asking user for do they what to know there age in dog or cat years
-    while (1)
-    {
-        char dog_or_cat_year[4];
-        printf("do you what to know your age is cat or dog years: ");
-        scanf("%s", dog_or_cat_year);
-
-        if(strcmp(dog_or_cat_year,"dog")==0){
-            dog_year = human_age * 15;
-            printf("you age in dog years is %d\n",dog_year);
-        }
-
-        else if(strcmp(dog_or_cat_year,"cat")==0){
-            cat_years = human_age * 15;
-            printf("your age in cat years is: %d\n",cat_years);
-        }
-        
-    }
+}
     
     return 0;
 }
