@@ -22,7 +22,7 @@ int main() {
     }
 
     while (1) {
-        printf("How many times do you want me to say: ");
+        printf("How many times do you want me to say: %s \n",What_to_say);
         printf("Enter number of times: ");
         scanf("%d", &times);  // Use the address of the variable for scanf
         printf("You want me to say: %s %d times\n", What_to_say, times);  // Fixing the printf statement
@@ -36,13 +36,13 @@ int main() {
     }
 
     // Call the displayresult function with the correct arguments
-    displayresult(What_to_say, times);
+  displayresult(What_to_say, times);
 
     return 0;
 }
 
 void displayresult(const char* message, int times) {
-    for (int i = 0; i < times; ++i) {
-        printf("%d %s\n", i + 1, message);  // Fixing the printf statement
+    for(int i = 0; i < times; ++i) {
+        printf("%d %s\n", i + 1, message);
     }
 }
