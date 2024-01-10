@@ -1,48 +1,55 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
-// Declare the displayresult function before using it
-void displayresult(const char* message, int times);
+void writeToFile(int hour, int min, int sec, const char *timestamp);
 
 int main() {
-    char What_to_say[1000];
-    int times;
+    int hour, min, sec;
 
     while (1) {
-        printf("What do you want me to say: ");
-        scanf("%s", What_to_say);
-        printf("You want me to say: %s?\n", What_to_say);  // Fixing the printf statement
+        printf("Congratulations on your speed build today!\n");
 
-        char confirm_WTS[2];  // Change from char to char array
+        printf("Enter hours: ");
+        scanf("%d", &hour);
+
+        printf("Enter minutes: ");
+        scanf("%d", &min);
+
+        printf("Enter seconds: ");
+        scanf("%d", &sec);
+
+        printf("So today you completed your speed build in %dH %dM %dS.\n", hour, min, sec);
+
+        char confirm_result[3];
         printf("Is this correct (y/n): ");
-        scanf("%s", confirm_WTS);
-        if (strcmp(confirm_WTS, "y") == 0) {
+        scanf("%s", confirm_result);
+
+        if (strcmp(confirm_result, "y") == 0) {
+            // Get current date and time
+            time_t t = time(NULL);
+            struct tm *tm_info = localtime(&t);
+
+            // Format timestamp
+            char timestamp[20];
+            strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", tm_info);
+
+            // Write to file with timestamp
+            writeToFile(hour, min, sec, timestamp);
             break;
         }
     }
-
-    while (1) {
-        printf("How many times do you want me to say: %s \n",What_to_say);
-        printf("Enter number of times: ");
-        scanf("%d", &times);  // Use the address of the variable for scanf
-        printf("You want me to say: %s %d times\n", What_to_say, times);  // Fixing the printf statement
-
-        char confirm_T[2];  // Change from char to char array
-        printf("Is this correct (y/n): ");
-        scanf("%s", confirm_T);
-        if (strcmp(confirm_T, "y") == 0) {
-            break;
-        }
-    }
-
-    // Call the displayresult function with the correct arguments
-  displayresult(What_to_say, times);
 
     return 0;
 }
 
-void displayresult(const char* message, int times) {
-    for(int i = 0; i < times; ++i) {
-        printf("%d %s\n", i + 1, message);
+void writeToFile(int hour, int min, int sec, const char *timestamp) {
+    FILE *file = fopen("speed_build_data.txt", "a");
+    if (file != NULL) {
+        fprintf(file, "%s - %dH %dM %dS\n", timestamp, hour, min, sec);
+        fclose(file);
+        printf("Data written to file successfully.\n");
+    } else {
+        printf("Error opening file for writing.\n");
     }
 }
